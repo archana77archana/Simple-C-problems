@@ -7,29 +7,36 @@ void swap(int *x, int *y)
 	*y = temp;
 }
 
+void print(int arr[], int n)
+{
+	for(int i = 0; i < n; i++)
+	{
+		printf("%d\n", arr[i]);
+	}
+
+	printf("\n");
+}
+
 void sort(int arr[], int n)
 {
 	int i, j, min;
 
-	for(i = 0; i < n; i++)
+	for(i = 0; i < n-1; i++)
 	{
 		min = i;
 
 		for(j = i+1; j < n; j++)
-		{
 			if(arr[min] > arr[j])
-			{
 				min = j;
-			}
-		}
 
-		swap(&arr[min], &arr[j]);
+		swap(&arr[min], &arr[i]);
 	}
 }
 
 void wave(int arr[], int n)
 {
 	sort(arr, n);
+	print(arr, n);
 
 	for(int i = 0; i < n; i += 2)
 	{
@@ -42,23 +49,20 @@ void wave(int arr[], int n)
 
 }
 
-void print(int arr[], int n)
-{
-	for(int i = 0; i < n; i++)
-	{
-		printf("%d\n", arr[i]);
-	}
-
-	printf("\n");
-}
-
 int main()
 {
 	int arr[] = {10, 90, 49, 2, 1, 5, 23};
 	int n = sizeof(arr)/sizeof(arr[0]);
 
+	printf("Real Array: \n");
+	print(arr, n);
+
+	printf("Sorted Array: \n");
+
 	sort(arr, n);
-	print(arr,n);
+	print(arr, n);
+
+	printf("Wave form: \n");
 
 	wave(arr, n);
 	print(arr, n);
